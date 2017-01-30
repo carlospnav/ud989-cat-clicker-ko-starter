@@ -1,8 +1,8 @@
-var ViewModel = function(){
+var Cat = function(){
   this.clickCount = ko.observable(0);
   this.name = ko.observable('Tabby');
   this.levels = ko.observableArray(["Newborn", "Teen", "Adult", "Hero"]);
-this.nicknames = ko.observableArray([{ name: "Josefine" }, { name: "Sammy" }, { name: "Rex" }, { name: "Poppy" }]);
+  this.nicknames = ko.observableArray([{ name: "Josefine" }, { name: "Sammy" }, { name: "Rex" }, { name: "Poppy" }]);
   this.imgSrc = ko.observable('img/434164568_fea0ad4013_z.jpg');
   this.imgAttribution = ko.observable('https://www.flickr.com/');
   this.level = ko.computed(function(){
@@ -15,8 +15,12 @@ this.nicknames = ko.observableArray([{ name: "Josefine" }, { name: "Sammy" }, { 
     else
       return this.levels()[3];
   }, this);
+}
+
+var ViewModel = function(){
+  this.currentCat = ko.observable(new Cat());
   this.incrementCounter = function(){
-    this.clickCount(this.clickCount() + 1);
+    this.currentCat().clickCount(this.currentCat().clickCount() + 1);
   }
 }
 
